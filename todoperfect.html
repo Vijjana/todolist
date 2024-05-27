@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>todo</title>
+    </head>
+    <body>
+        <form id = "js">
+            <input type = "text" id = "name" placeholder = "enter productname"><br>
+            <select id = "productCatogery">
+                <option value = "productCatogery">productCatogery</option>
+                <option value = "checks">checks</option>
+                <option value = "printed">printed</option>
+                <option value = "formal">formal</option>
+                <option value = "2pockets">2pockets</option>
+                <option value = "lycra">lycra</option>
+            </select><br>
+            <input type = "number" id = "price" placeholder = "enter price"><br>
+            <input type = "text" id = "brand" placeholder = "enter brand"><br>
+            <select id = "deliveredBy">
+                <option value = "DTDC">DTDC</option>
+                <option value = "Zepto">Zepto</option>
+                <option value = "blueDart">blueDart</option>
+            </select><br>
+            <button>submit</button>
+        </form>
+        <h3>Totalscore</h3>
+        <table border = "1" cellspacing = "0">
+            <tr>
+                <th>ProductName</th>
+                <th>ProductCatogery</th>
+                <th>Price</th>
+                <th>Brand</th>
+                <th>DeliveredBy</th>
+            </tr>
+            <tbody></tbody>
+        </table>
+    </body>
+</html>
+<script>
+    let totalScore = 0;
+    document.querySelector("button").addEventListener("click",todo);
+    function todo(){
+        event.preventDefault();
+       let object = [{pN : document.querySelector("#name").value,
+         pC : document.querySelector("#productCatogery").value,
+         price : document.querySelector("#price").value,
+         brand : document.querySelector("#brand").value,
+         deliveredBy : document.querySelector("#deliveredBy").value,
+    }];
+    object.forEach(function (element){
+
+    
+    let tr = document.createElement("tr");
+    let td1 = document.createElement("td");
+    let td2 = document.createElement("td");
+    let td3 = document.createElement("td");
+    let td4 = document.createElement("td");
+    let td5 = document.createElement("td");
+    let td6 = document.createElement("td");
+    td1.innerText = element.pN;
+    td2.innerText = element.pC;
+    td3.innerText = element.price;
+    if(element.price < 800)
+    {
+        td3.style = "color:green";
+    }
+    else{
+        td3.style = "color:red";
+    }
+    totalScore = totalScore +Number(element.price);
+    document.querySelector("h3").innerText ="total price is"+" "+totalScore;
+    td4.innerText = element.brand;
+    td5.innerText = element.deliveredBy;
+    td6.innerText = "delete"
+    td6.addEventListener("click",del)
+    tr.append(td1,td2,td3,td4,td5,td6);
+    document.querySelector("tbody").append(tr);
+
+function del(){
+    event.target.parentNode.remove();
+
+}
+})
+    }
+
+</script>
